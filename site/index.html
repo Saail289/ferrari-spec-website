@@ -266,13 +266,14 @@
       </div>
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.15) 55%,rgba(10,10,10,0.92) 100%);"></div>
       <div style="position:absolute;left:4vw;right:4vw;bottom:9vh;max-width:1400px;">
-        <div data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:20px;">01 / CORSE</div>
-        <h2 data-world-line="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.6rem,7.5vw,7.4rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Corse</h2>
-        <p data-world-line="" style="font-family: 'JetBrains Mono',monospace; font-size: clamp(0.95rem,1.35vw,1.25rem); line-height: 1.6; color: #c8c5c2; max-width: 40ch; margin: 22px 0 26px">Born to race. Every road car begins as a lesson learned at 300 km/h.</p>
+        <div data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:20px;">01 / ROSSO INDOSSATO</div>
+        <h2 data-world-line="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.6rem,7.5vw,7.4rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Rosso Indossato</h2>
+        <p data-world-line="" style="font-family: 'JetBrains Mono',monospace; font-size: clamp(0.95rem,1.35vw,1.25rem); line-height: 1.6; color: #c8c5c2; max-width: 40ch; margin: 22px 0 26px">The colour of a racing car, cut into leather, wool and silk.</p>
         <div data-world-line="" style="display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#8a8784;">
-          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">499P</span>
-          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">SF-24</span>
-          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">296 CHALLENGE</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">ROSSO CORSA</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">LEATHER</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">KNITWEAR</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">TAILORING</span>
         </div>
       </div>
     </article>
@@ -529,16 +530,22 @@ class Component extends DCLogic {
       Array.from(node.childNodes).forEach((k) => {
         if (k.nodeType === 3) {
           const frag = document.createDocumentFragment();
-          for (const ch of k.textContent) {
-            if (ch === '\n') continue;
-            if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
-            const s = document.createElement('span');
-            s.textContent = ch;
-            s.style.display = 'inline-block';
-            s.style.willChange = 'opacity, filter, transform';
-            frag.appendChild(s);
-            out.push(s);
-          }
+          // wrap each word so lines break between words, never mid-word
+          k.textContent.replace(/\n/g, '').split(/( +)/).forEach((part) => {
+            if (!part) return;
+            if (part.trim() === '') { frag.appendChild(document.createTextNode(part)); return; }
+            const word = document.createElement('span');
+            word.style.whiteSpace = 'nowrap';
+            for (const ch of part) {
+              const s = document.createElement('span');
+              s.textContent = ch;
+              s.style.display = 'inline-block';
+              s.style.willChange = 'opacity, filter, transform';
+              word.appendChild(s);
+              out.push(s);
+            }
+            frag.appendChild(word);
+          });
           node.replaceChild(frag, k);
         } else if (k.nodeType === 1 && k.tagName !== 'BR') {
           splitChars(k, out);
