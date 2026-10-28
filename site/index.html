@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Roboto+Slab:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#0A0A0A;}
+  body{overflow-x:clip;color:#F5F3F0;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent,#FF2800);text-decoration:none;}
+  a:hover{color:#FFF200;}
+  ::selection{background:var(--accent,#FF2800);color:#fff;}
+  html.lenis,html.lenis body{height:auto;}
+  .lenis.lenis-smooth{scroll-behavior:auto !important;}
+  .lenis.lenis-stopped{overflow:hidden;}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</helmet>
+
+<div style="background:#0A0A0A;color:#F5F3F0;font-family:'Archivo',sans-serif;position:relative;overflow-x:clip;">
+
+  <!-- NAV -->
+  <nav data-nav="" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;transition:background 0.4s ease,backdrop-filter 0.4s ease,border-color 0.4s ease;border-bottom:1px solid rgba(255,255,255,0);">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:30px;height:38px;background:#FFF200;border-radius:3px 3px 4px 4px;clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;color:#0A0A0A;letter-spacing:-1px;">SF</span>
+      </div>
+      <img data-navlogo="" src="uploads/ferrari-wordmark.png" alt="Ferrari" style="display:block;height:22px;width:auto;position:relative;">
+    </div>
+    <div style="display:flex;align-items:center;gap:36px;">
+      <a href="#machine" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#F5F3F0;">THE MACHINE</a>
+      <a href="#heritage" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#F5F3F0;">HERITAGE</a>
+      <a href="#performance" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#F5F3F0;">PERFORMANCE</a>
+      <a href="#configure" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;padding:11px 22px;background:var(--accent,#FF2800);color:#fff;border-radius:2px;font-weight:700;">RESERVE</a>
+    </div>
+  </nav>
+
+  <!-- HERO — text-masked video -->
+  <section data-hero="" style="position:relative;height:100vh;overflow:hidden;background:#0A0A0A;isolation:isolate;">
+    <video data-hero-video="" autoplay="" muted="" loop="" playsinline="" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;will-change:transform;">
+      <source src="uploads/Formula_1_car_blasting_racetrack_202607231957.mp4" type="video/mp4">
+    </video>
+
+    <!-- knockout: multiply layer paints page color everywhere EXCEPT the white letters, where video shows through -->
+    <div data-knock-layer="" style="position:absolute;inset:0;background:#000;mix-blend-mode:multiply;will-change:opacity;">
+      <div data-knock-text="" style="position:absolute;inset:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:88px 3vw 112px;font-size:clamp(90px,min(21vw,calc((100vh - 200px) / 2.5)),340px);color:#ffffff;font-family:'Archivo',sans-serif;font-weight:900;line-height:0.78;letter-spacing:-0.02em;text-transform:uppercase;">
+        <span style="display:block;text-align:left;">Made</span>
+        <span style="display:block;text-align:center;">To</span>
+        <span style="display:block;text-align:right;">Race</span>
+      </div>
+    </div>
+
+    <div data-scroll-hint="" style="position: absolute; left: 0; right: 0; bottom: 3vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; pointer-events: none">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;color:rgba(245,243,240,0.7);">SCROLL</span>
+      <div style="width:1px;height:38px;background:linear-gradient(180deg,var(--accent,#FF2800) 0%,rgba(255,40,0,0) 100%);"></div>
+    </div>
+  </section>
+
+  <!-- INTRO STATEMENT (line reveal) -->
+  <section id="heritage" style="padding:22vh 6vw 11vh;max-width:1400px;margin:0 auto;">
+    <div data-materialize="" style="max-width:34ch;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.06em;line-height:1.6;color:rgba(245,243,240,0.7);margin-bottom:44px;">Sixteen constructors' titles.<br>One relentless idea, engineered without compromise.</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:44px;">— SINCE 1947 / MARANELLO, ITALY</div>
+    <div data-reveal="" data-keep-lines="" style="font-family:'JetBrains Mono',monospace;font-weight:800;font-size:clamp(2rem,5.2vw,4.6rem);line-height:1.04;letter-spacing:-0.02em;">
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;">We do not chase speed.</span></div>
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;color:#6f6c69;">We define it one relentless</span></div>
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;color:#6f6c69;">machine at a time,where</span></div>
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;">instinct meets engineering.</span></div>
+    </div>
+  </section>
+
+  <!-- PINNED CROSS-FADE CARDS -->
+  <section id="machine" data-fade-section="" style="position:relative;">
+    <style>
+      /* Era photographs: colour arrives with the decades (silver gelatin -> faded film -> full Rosso). */
+      [data-era-media]{position:relative;margin:0;background:#0d0d0d;overflow:hidden;--seam:90deg;}
+      [data-era-media][data-seam="right"]{--seam:270deg;}
+      [data-era-media] img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+      /* era accent bleeding in at the seam */
+      [data-era-media]::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(var(--seam),var(--era) 0%,transparent 48%);mix-blend-mode:soft-light;opacity:0.7;}
+      /* fuse the photo edge into the #111 card + floor shade for the credit */
+      [data-era-media]::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(var(--seam),#111 0%,rgba(17,17,17,0.6) 8%,rgba(17,17,17,0) 30%),linear-gradient(0deg,rgba(10,10,10,0.72) 0%,rgba(10,10,10,0) 24%);}
+      [data-era-media="1950s"]{--era:#C9A24B;}
+      [data-era-media="1950s"] img{filter:grayscale(1) sepia(0.14) contrast(1.14) brightness(0.86);object-position:60% 58%;}
+      [data-era-media="1970s"]{--era:#C0632B;}
+      [data-era-media="1970s"] img{filter:saturate(0.72) sepia(0.2) contrast(1.06) brightness(0.9);object-position:40% 50%;}
+      [data-era-media="2000s"]{--era:#C81400;}
+      [data-era-media="2000s"] img{filter:saturate(0.88) contrast(1.06) brightness(0.88);object-position:46% 50%;}
+      [data-era-media="2010s"]{--era:#E10600;}
+      [data-era-media="2010s"] img{filter:saturate(0.95) contrast(1.06) brightness(0.9);object-position:45% 50%;}
+      [data-era-media="2020s"]{--era:#FF2800;}
+      [data-era-media="2020s"] img{filter:contrast(1.08) brightness(0.92);object-position:60% 45%;}
+      [data-era-credit]{position:absolute;right:14px;bottom:12px;z-index:2;max-width:calc(100% - 28px);font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.45;letter-spacing:0.04em;color:rgba(245,243,240,0.72);text-align:right;}
+      [data-era-credit] a{color:inherit;text-decoration:underline;text-decoration-color:rgba(245,243,240,0.32);text-underline-offset:2px;}
+      [data-era-credit] a:hover{color:#F5F3F0;}
+      @media (max-width:760px){
+        [data-fade-card]{grid-template-columns:1fr !important;grid-template-rows:40% 1fr;}
+        [data-fade-card] > [data-era-media]{order:-1 !important;}
+        [data-fade-card] > div{padding:20px 20px 22px !important;}
+        [data-era-media][data-seam]{--seam:0deg;}
+        [data-era-credit]{font-size:9px;right:12px;bottom:10px;}
+        /* ticker sits beside the eyebrow instead of colliding with the heading */
+        [data-era-tick]{top:16vh !important;}
+        [data-year-ticker]{font-size:1.6rem !important;}
+        [data-era-count]{display:none;}
+      }
+    </style>
+    <div data-fade-stage="" style="height:100vh;position:relative;overflow:hidden;padding:0 4vw;display:flex;align-items:center;">
+
+      <!-- section heading -->
+      <div style="position:absolute;left:4vw;top:16vh;z-index:5;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:14px;">/ THE SCARLET DYNASTY</div>
+        <h2 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.5rem,3.2vw,2.6rem);line-height:1;letter-spacing:-0.01em;text-transform:uppercase;margin:0;">Seventy&nbsp; Years&nbsp;&nbsp;<span style="color: rgb(111, 108, 105);">In&nbsp; Red.</span></h2>
+      </div>
+
+      <!-- year ticker -->
+      <div data-era-tick="" style="position:absolute;right:4vw;top:14vh;z-index:5;text-align:right;">
+        <div data-year-ticker="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.4rem,4.4vw,3.6rem);line-height:1;letter-spacing:0.02em;color:#C9A24B;transition:color 0.5s ease;">1953</div>
+        <div data-era-count="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.24em;color:#6f6c69;margin-top:8px;">ERA 01 / 05</div>
+      </div>
+
+      <!-- card stack -->
+      <div style="position:relative;width:100%;max-width:1400px;margin:23vh auto 0;height:64vh;">
+        <article data-fade-card="" data-era-accent="#C9A24B" data-era-year="1953" style="position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#111111;border:1px solid #1f1f1f;display:grid;grid-template-columns:1.02fr 0.98fr;will-change:opacity,transform;">
+          <div style="padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.24em;color:#C9A24B;">01 / 1950 – 1959</div>
+            <div>
+              <h3 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.7rem,3.2vw,3rem);line-height:1;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;">The Birth of the Legend</h3>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.85rem,1vw,1rem);line-height:1.5;color:#a8a5a2;max-width:54ch;margin:0;">Ferrari enters the very first Formula One World Championship and never leaves. Alberto Ascari strings together victory after victory, and the Scuderia's scarlet becomes the colour every rival learns to fear.</p>
+            </div>
+            <div style="display:flex;gap:44px;">
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#C9A24B;margin-bottom:7px;">CAR</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">500 F2</div></div>
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#C9A24B;margin-bottom:7px;">DRIVER</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">Alberto Ascari</div></div>
+            </div>
+          </div>
+          <figure data-era-media="1950s" data-seam="left">
+            <img src="uploads/eras/era-1950s-ascari-500-zandvoort-1953.jpg" width="1600" height="1279" loading="lazy" decoding="async" alt="Alberto Ascari leans his Ferrari 500 F2 through a corner at the 1953 Dutch Grand Prix, grandstands packed behind him.">
+            <figcaption data-era-credit="">Zandvoort, 1953. <a href="https://commons.wikimedia.org/wiki/File:Autoraces_Dutch_Grand_Prix_Zandvoort._Ascari_in_de_bocht,_Bestanddeelnr_905-7653.jpg" target="_blank" rel="noopener">Harry Pot / Anefo</a>, Nationaal Archief, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a></figcaption>
+          </figure>
+        </article>
+
+        <article data-fade-card="" data-era-accent="#C0632B" data-era-year="1976" style="position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#111111;border:1px solid #1f1f1f;display:grid;grid-template-columns:0.98fr 1.02fr;will-change:opacity,transform;">
+          <figure data-era-media="1970s" data-seam="right" style="order:1;">
+            <img src="uploads/eras/era-1970s-lauda-312t2-nurburgring-1976.jpg" width="1600" height="1065" loading="lazy" decoding="async" alt="Niki Lauda in the number 1 Ferrari 312T2 at the Nürburgring Südkehre, practice for the 1976 German Grand Prix.">
+            <figcaption data-era-credit="">Nürburgring, 1976. <a href="https://commons.wikimedia.org/wiki/File:LaudaNiki19760731Ferrari312T2.jpg" target="_blank" rel="noopener">Lothar Spurzem</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/de/deed.en" target="_blank" rel="noopener">CC BY-SA 2.0 DE</a></figcaption>
+          </figure>
+          <div style="padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;order:2;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.24em;color:#C0632B;">02 / 1970 – 1979</div>
+            <div>
+              <h3 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.7rem,3.2vw,3rem);line-height:1;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;">The Comeback</h3>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.85rem,1vw,1rem);line-height:1.5;color:#a8a5a2;max-width:54ch;margin:0;">In 1976 Niki Lauda survives a near-fatal crash at the Nürburgring and races again at Monza just 42 days later. The flat-12 312T2 carries him to a second title in 1977, earned through sheer refusal to surrender.</p>
+            </div>
+            <div style="display:flex;gap:44px;">
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#C0632B;margin-bottom:7px;">CAR</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">312T2</div></div>
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#C0632B;margin-bottom:7px;">DRIVER</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">Niki Lauda</div></div>
+            </div>
+          </div>
+        </article>
+
+        <article data-fade-card="" data-era-accent="#C81400" data-era-year="2004" style="position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#111111;border:1px solid #1f1f1f;display:grid;grid-template-columns:1.02fr 0.98fr;will-change:opacity,transform;">
+          <div style="padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.24em;color:#C81400;">03 / 2000 – 2004</div>
+            <div>
+              <h3 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.7rem,3.2vw,3rem);line-height:1;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;">The Dynasty</h3>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.85rem,1vw,1rem);line-height:1.5;color:#a8a5a2;max-width:54ch;margin:0;">Michael Schumacher, Jean Todt and Ross Brawn forge the most dominant machine the sport has seen — five consecutive drivers' titles and a red wave that rewrites the record books.</p>
+            </div>
+            <div style="display:flex;gap:44px;">
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#C81400;margin-bottom:7px;">CAR</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">F2004</div></div>
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#C81400;margin-bottom:7px;">DRIVER</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">Michael Schumacher</div></div>
+            </div>
+          </div>
+          <figure data-era-media="2000s" data-seam="left">
+            <img src="uploads/eras/era-2000s-schumacher-f2004-silverstone-2004.jpg" width="1600" height="694" loading="lazy" decoding="async" alt="Michael Schumacher raises a hand from the cockpit of his Ferrari F2004 after winning the 2004 British Grand Prix.">
+            <figcaption data-era-credit="">Silverstone, 2004. <a href="https://commons.wikimedia.org/wiki/File:Michael_Schumacher_-_Ferrari_F2004_acknowledges_the_win_at_the_2004_British_Grand_Prix_(50835649302).jpg" target="_blank" rel="noopener">Martin Lee</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></figcaption>
+          </figure>
+        </article>
+
+        <article data-fade-card="" data-era-accent="#E10600" data-era-year="2012" style="position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#111111;border:1px solid #1f1f1f;display:grid;grid-template-columns:0.98fr 1.02fr;will-change:opacity,transform;">
+          <figure data-era-media="2010s" data-seam="right" style="order:1;">
+            <img src="uploads/eras/era-2010s-alonso-f2012-sepang-2012.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Fernando Alonso salutes from his Ferrari F2012 on the victory lap of the 2012 Malaysian Grand Prix.">
+            <figcaption data-era-credit="">Sepang, 2012. <a href="https://commons.wikimedia.org/wiki/File:Fernando_Alonso_won_2012_Malaysian_GP.jpg" target="_blank" rel="noopener">Morio</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></figcaption>
+          </figure>
+          <div style="padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;order:2;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.24em;color:#E10600;">04 / 2010 – 2020</div>
+            <div>
+              <h3 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.7rem,3.2vw,3rem);line-height:1;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;">The Chase</h3>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.85rem,1vw,1rem);line-height:1.5;color:#a8a5a2;max-width:54ch;margin:0;">Fernando Alonso takes the title fight to the final race in 2010 and 2012, losing each by four points or fewer. Sebastian Vettel carries the challenge on from 2015, and the faith of the tifosi never dims.</p>
+            </div>
+            <div style="display:flex;gap:44px;">
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#E10600;margin-bottom:7px;">CAR</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">F2012</div></div>
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#E10600;margin-bottom:7px;">DRIVER</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">Fernando Alonso</div></div>
+            </div>
+          </div>
+        </article>
+
+        <article data-fade-card="" data-era-accent="#FF2800" data-era-year="2025" style="position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#111111;border:1px solid #1f1f1f;display:grid;grid-template-columns:1.02fr 0.98fr;will-change:opacity,transform;">
+          <div style="padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.24em;color:#FF2800;">05 / TODAY</div>
+            <div>
+              <h3 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.7rem,3.2vw,3rem);line-height:1;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;">The New Era</h3>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.85rem,1vw,1rem);line-height:1.5;color:#a8a5a2;max-width:54ch;margin:0;">Charles Leclerc and Lewis Hamilton carry the badge into a new age — a hybrid era where raw instinct, live data and a century of desire chase the sport's ultimate prize once more.</p>
+            </div>
+            <div style="display:flex;gap:44px;">
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#FF2800;margin-bottom:7px;">CAR</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">SF-25</div></div>
+              <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#FF2800;margin-bottom:7px;">DRIVER</div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;">Leclerc &amp; Hamilton</div></div>
+            </div>
+          </div>
+          <figure data-era-media="2020s" data-seam="left">
+            <img src="uploads/eras/era-2020s-hamilton-sf25-las-vegas-2025.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Lewis Hamilton's Ferrari SF-25 streaks along the Las Vegas Strip circuit at night, 2025, the track blurred with speed.">
+            <figcaption data-era-credit="">Las Vegas, 2025. <a href="https://commons.wikimedia.org/wiki/File:Las_Vegas_Grand_Prix_(54942078301).jpg" target="_blank" rel="noopener">Tia Dufour / DHS</a>, public domain</figcaption>
+          </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS COUNT-UP -->
+  <section id="performance" style="padding:16vh 6vw;background:var(--accent,#FF2800);color:#0A0A0A;position:relative;">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#0A0A0A;opacity:0.6;margin-bottom:60px;">/ THE NUMBERS DON'T LIE</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px;">
+        <div style="border-top:2px solid #0A0A0A;padding-top:22px;">
+          <div style="display:flex;align-items:baseline;gap:6px;"><span data-count="16" data-dec="0" style="font-weight:900;font-size:clamp(3rem,7vw,6.6rem);line-height:0.9;letter-spacing:-0.03em;">0</span><span style="font-weight:800;font-size:1.4rem;">×</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;margin-top:16px;text-transform:uppercase;">F1 Constructors' Championship</div>
+        </div>
+        <div style="border-top:2px solid #0A0A0A;padding-top:22px;">
+          <div style="display:flex;align-items:baseline;gap:6px;"><span data-count="15" data-dec="0" style="font-weight:900;font-size:clamp(3rem,7vw,6.6rem);line-height:0.9;letter-spacing:-0.03em;">0</span><span style="font-weight:800;font-size:1.4rem;">×</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;margin-top:16px;text-transform:uppercase;">F1 Drivers' Championship</div>
+        </div>
+        <div style="border-top:2px solid #0A0A0A;padding-top:22px;">
+          <div style="display:flex;align-items:baseline;gap:6px;"><span data-count="14" data-dec="0" style="font-weight:900;font-size:clamp(3rem,7vw,6.6rem);line-height:0.9;letter-spacing:-0.03em;">0</span><span style="font-weight:800;font-size:1.4rem;">×</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;margin-top:16px;text-transform:uppercase;">24 Hours of Le Mans</div>
+        </div>
+        <div style="border-top:2px solid #0A0A0A;padding-top:22px;">
+          <div style="display:flex;align-items:baseline;gap:6px;"><span data-count="8" data-dec="0" style="font-weight:900;font-size:clamp(3rem,7vw,6.6rem);line-height:0.9;letter-spacing:-0.03em;">0</span><span style="font-weight:800;font-size:1.4rem;">×</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;margin-top:16px;text-transform:uppercase;">FIA WEC Manufacturers' Titles</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORLDS OF FERRARI — full-bleed vertical chapters -->
+  <section data-worlds="" style="position:relative;background:#0A0A0A;">
+    <div data-world-rail="" style="position:fixed;right:30px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:16px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;font-family:'JetBrains Mono',monospace;">
+      <span data-wnum="0" style="font-size:13px;letter-spacing:0.16em;color:var(--accent,#FF2800);transition:color 0.3s;">01</span>
+      <span data-wnum="1" style="font-size:13px;letter-spacing:0.16em;color:#4a4744;transition:color 0.3s;">02</span>
+      <span data-wnum="2" style="font-size:13px;letter-spacing:0.16em;color:#4a4744;transition:color 0.3s;">03</span>
+      <span data-wnum="3" style="font-size:13px;letter-spacing:0.16em;color:#4a4744;transition:color 0.3s;">04</span>
+    </div>
+
+    <article data-world="" style="position:relative;height:100vh;overflow:hidden;">
+      <div data-world-img="" style="position:absolute;inset:-8% 0;will-change:transform;">
+        <video data-corse-video="" autoplay muted loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;">
+          <source src="uploads/Camera_moving_through_cocktail_p..._202608071745.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.15) 55%,rgba(10,10,10,0.92) 100%);"></div>
+      <div style="position:absolute;left:4vw;right:4vw;bottom:9vh;max-width:1400px;">
+        <div data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:20px;">01 / CORSE</div>
+        <h2 data-world-line="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.6rem,7.5vw,7.4rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Corse</h2>
+        <p data-world-line="" style="font-family: 'JetBrains Mono',monospace; font-size: clamp(0.95rem,1.35vw,1.25rem); line-height: 1.6; color: #c8c5c2; max-width: 40ch; margin: 22px 0 26px">Born to race. Every road car begins as a lesson learned at 300 km/h.</p>
+        <div data-world-line="" style="display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#8a8784;">
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">499P</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">SF-24</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">296 CHALLENGE</span>
+        </div>
+      </div>
+    </article>
+
+    <article data-world="" style="position:relative;height:100vh;overflow:hidden;">
+      <div data-world-img="" style="position:absolute;inset:-8% 0;will-change:transform;">
+        <video data-gt-video="" autoplay muted loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;">
+          <source src="uploads/Cars_driving_at_extreme_speed_202608071908.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.15) 55%,rgba(10,10,10,0.92) 100%);"></div>
+      <div style="position:absolute;left:4vw;right:4vw;bottom:9vh;max-width:1400px;">
+        <div data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:20px;">02 / GRAN TURISMO</div>
+        <h2 data-world-line="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.6rem,7.5vw,7.4rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Gran Turismo</h2>
+        <p data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.95rem,1.35vw,1.25rem);line-height:1.6;color:#c8c5c2;max-width:40ch;margin:22px 0 26px;">The road, rewritten. Grand touring where a racing heart wears a tailored suit.</p>
+        <div data-world-line="" style="display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#8a8784;">
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">296 GTB</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">SF90</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">ROMA</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">PUROSANGUE</span>
+        </div>
+      </div>
+    </article>
+
+    <article data-world="" style="position:relative;height:100vh;overflow:hidden;">
+      <div data-world-img="" style="position:absolute;inset:-8% 0;will-change:transform;">
+        <video data-classiche-video="" autoplay muted loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;">
+          <source src="uploads/Ferrari_cars_driving_cinematic_s..._202608072043.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.15) 55%,rgba(10,10,10,0.92) 100%);"></div>
+      <div style="position:absolute;left:4vw;right:4vw;bottom:9vh;max-width:1400px;">
+        <div data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:20px;">03 / CLASSICHE</div>
+        <h2 data-world-line="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.6rem,7.5vw,7.4rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Classiche</h2>
+        <p data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.95rem,1.35vw,1.25rem);line-height:1.6;color:#c8c5c2;max-width:40ch;margin:22px 0 26px;">Time, restored. The icons of the past kept alive, certified and forever running.</p>
+        <div data-world-line="" style="display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#8a8784;">
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">250 GTO</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">F40</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">TESTAROSSA</span>
+        </div>
+      </div>
+    </article>
+
+    <article data-world="" style="position:relative;height:100vh;overflow:hidden;">
+      <div data-world-img="" style="position:absolute;inset:-8% 0;background:repeating-linear-gradient(48deg,#131313,#131313 15px,#181818 15px,#181818 30px);will-change:transform;">
+        <video data-vento-video="" autoplay muted loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;">
+          <source src="uploads/galleria-del-vento.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.15) 55%,rgba(10,10,10,0.92) 100%);"></div>
+      <div style="position:absolute;left:4vw;right:4vw;bottom:9vh;max-width:1400px;">
+        <div data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:20px;">04 / GALLERIA DEL VENTO</div>
+        <h2 data-world-line="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.6rem,7.5vw,7.4rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Galleria del Vento</h2>
+        <p data-world-line="" style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.95rem,1.35vw,1.25rem);line-height:1.6;color:#c8c5c2;max-width:40ch;margin:22px 0 26px;">Air, mastered. Before a shape wears the badge, it must win an argument with the wind.</p>
+        <div data-world-line="" style="display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#8a8784;">
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">F80</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">S-DUCT</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">RENZO PIANO</span>
+          <span style="border:1px solid #333;border-radius:2px;padding:8px 14px;">MARANELLO 1997</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- HORIZONTAL PINNED SPEC SCROLLER -->
+  <section data-hsection="" style="height:100vh;overflow:hidden;position:relative;background:#0A0A0A;">
+    <div data-htrack="" style="display:flex;height:100%;will-change:transform;">
+      <div style="flex:0 0 46vw;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 5vw;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.3em;color:var(--accent,#FF2800);margin-bottom:24px;">/ DRIVE THROUGH →</div>
+        <h2 style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.1rem,4.4vw,4rem);line-height:1.02;letter-spacing:-0.01em;text-transform:uppercase;margin:0;">The<br>Machine,<br>Dissected</h2>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.95rem;margin:30px 0 0;color:#8a8784;max-width:42ch;line-height:1.7;">Scroll to travel the length of the car — every system built to serve a single verb: <span style="color:#F5F3F0;">go.</span></p>
+      </div>
+
+      <div style="flex:0 0 62vw;height:100%;padding:12vh 2vw;">
+        <div style="height:100%;border-radius:14px;overflow:hidden;position:relative;background:#0d0d0d;border:1px solid #1f1f1f;">
+          <img src="uploads/drive/powertrain.jpg" alt="Exploded view of a hybrid V12 engine with red cam covers" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top right,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.4) 38%,rgba(10,10,10,0) 62%);"></div>
+          <div style="position:absolute;left:32px;top:30px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.22em;color:var(--accent,#FF2800);">01</div>
+          <div style="position:absolute;left:32px;bottom:34px;"><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.6rem,2.7vw,2.6rem);text-transform:uppercase;letter-spacing:-0.01em;">Powertrain</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8784;margin-top:8px;">HYBRID V12 · 1000 CV · 9500 RPM</div></div>
+        </div>
+      </div>
+      <div style="flex:0 0 62vw;height:100%;padding:12vh 2vw;">
+        <div style="height:100%;border-radius:14px;overflow:hidden;position:relative;background:#0d0d0d;border:1px solid #1f1f1f;">
+          <img src="uploads/drive/aerodynamics.jpg" alt="Ferrari Formula 1 car in a wind tunnel with smoke streamlines flowing over it" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% 55%;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top right,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.4) 38%,rgba(10,10,10,0) 62%);"></div>
+          <div style="position:absolute;left:32px;top:30px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.22em;color:var(--accent,#FF2800);">02</div>
+          <div style="position:absolute;left:32px;bottom:34px;"><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.6rem,2.7vw,2.6rem);text-transform:uppercase;letter-spacing:-0.01em;">Aerodynamics</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8784;margin-top:8px;">ACTIVE AERO · 390 KG DOWNFORCE · CD 0.30</div></div>
+        </div>
+      </div>
+      <div style="flex:0 0 62vw;height:100%;padding:12vh 2vw;">
+        <div style="height:100%;border-radius:14px;overflow:hidden;position:relative;background:#0d0d0d;border:1px solid #1f1f1f;">
+          <img src="uploads/drive/chassis.jpg" alt="Carbon-fibre chassis of a Ferrari hypercar inside a translucent red body" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 45%;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top right,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.4) 38%,rgba(10,10,10,0) 62%);"></div>
+          <div style="position:absolute;left:32px;top:30px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.22em;color:var(--accent,#FF2800);">03</div>
+          <div style="position:absolute;left:32px;bottom:34px;"><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.6rem,2.7vw,2.6rem);text-transform:uppercase;letter-spacing:-0.01em;">Chassis</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8784;margin-top:8px;">CARBON MONOCOQUE · 1470 KG · 48:52</div></div>
+        </div>
+      </div>
+      <div style="flex:0 0 62vw;height:100%;padding:12vh 2vw;">
+        <div style="height:100%;border-radius:14px;overflow:hidden;position:relative;background:#0d0d0d;border:1px solid #1f1f1f;">
+          <img src="uploads/drive/telemetry.jpg" alt="Pit wall monitors showing live telemetry traces and a track map" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% 50%;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top right,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.4) 38%,rgba(10,10,10,0) 62%);"></div>
+          <div style="position:absolute;left:32px;top:30px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.22em;color:var(--accent,#FF2800);">04</div>
+          <div style="position:absolute;left:32px;bottom:34px;"><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.6rem,2.7vw,2.6rem);text-transform:uppercase;letter-spacing:-0.01em;">Telemetry</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a8784;margin-top:8px;">1200 CHANNELS · LIVE FEED · ZERO LAG</div></div>
+        </div>
+      </div>
+      <div style="flex:0 0 20vw;"></div>
+    </div>
+  </section>
+
+  <!-- CLOSING LINE REVEAL + CTA -->
+  <section id="configure" data-reveal-host="" style="padding:24vh 6vw;text-align:center;position:relative;overflow:hidden;">
+    <div data-flag-reveal="" style="position:absolute;inset:0;z-index:0;pointer-events:none;">
+      <img data-flag-img="" src="uploads/ferrari-flag.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <canvas data-flag-canvas="" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+    </div>
+    <div data-reveal="" style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(2.2rem,6.6vw,6.6rem);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;max-width:18ch;margin:0 auto;position:relative;z-index:1;">
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;">The Next</span></div>
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;color:var(--accent,#FF2800);">Era Begins</span></div>
+      <div style="overflow:hidden;padding:2px 0;"><span data-line="" style="display:block;">Now.</span></div>
+    </div>
+    <a href="#configure" style="display:inline-block;margin-top:56px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.2em;font-weight:700;padding:20px 44px;background:var(--accent,#FF2800);color:#fff;border-radius:2px;position:relative;z-index:1;">CONFIGURE YOURS →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid #1c1c1c;padding:60px 6vw 40px;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;">
+      <div>
+        <img data-logo="" src="uploads/ferrari-wordmark.png" alt="Ferrari" style="display:block;height:46px;width:auto;position:relative;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6f6c69;margin-top:18px;letter-spacing:0.12em;">MARANELLO · ITALIA · EST. 1947</div>
+      </div>
+      <div style="display:flex;gap:40px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;">
+        <a href="#machine" style="color:#8a8784;">MACHINE</a>
+        <a href="#heritage" style="color:#8a8784;">HERITAGE</a>
+        <a href="#performance" style="color:#8a8784;">PERFORMANCE</a>
+        <a href="#configure" style="color:#8a8784;">CONFIGURE</a>
+      </div>
+    </div>
+    <div style="max-width:1400px;margin:44px auto 0;font-family:'JetBrains Mono',monospace;font-size:10px;color:#4a4744;letter-spacing:0.1em;line-height:1.7;">
+      DESIGN CONCEPT — SCROLL EXPERIENCE STUDY. INDEPENDENT TRIBUTE, NOT AFFILIATED WITH OR ENDORSED BY FERRARI S.P.A.
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C81400&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#FF2800&quot;,&quot;#E10600&quot;,&quot;#C81400&quot;,&quot;#FFF200&quot;]},&quot;smoothScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;navLogoHeight&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:12,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Nav&quot;},&quot;navLogoX&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:-100,&quot;max&quot;:200,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Nav&quot;},&quot;navLogoY&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:-40,&quot;max&quot;:40,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Nav&quot;},&quot;logoHeight&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:36,&quot;min&quot;:24,&quot;max&quot;:160,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Footer&quot;},&quot;logoX&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:-200,&quot;max&quot;:200,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Footer&quot;},&quot;logoY&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0,&quot;min&quot;:-100,&quot;max&quot;:100,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Footer&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this._killed = false; this.waitAndInit(); }
+
+  componentDidUpdate() {
+    const logo = document.querySelector('[data-logo]');
+    if (logo) {
+      logo.style.height = (this.props.logoHeight ?? 71) + 'px';
+      logo.style.transform = 'translate(' + (this.props.logoX ?? 0) + 'px,' + (this.props.logoY ?? 0) + 'px)';
+    }
+    const navlogo = document.querySelector('[data-navlogo]');
+    if (navlogo) {
+      navlogo.style.height = (this.props.navLogoHeight ?? 22) + 'px';
+      navlogo.style.transform = 'translate(' + (this.props.navLogoX ?? 0) + 'px,' + (this.props.navLogoY ?? 0) + 'px)';
+    }
+    if (this.props.accentColor) document.documentElement.style.setProperty('--accent', this.props.accentColor);
+  }
+
+  componentWillUnmount() {
+    this._killed = true;
+    try {
+      if (this.lenis) this.lenis.destroy();
+      if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+      if (this._tickerFn && window.gsap) window.gsap.ticker.remove(this._tickerFn);
+      if (this._flagRAF) cancelAnimationFrame(this._flagRAF);
+      if (this._flagResize) window.removeEventListener('resize', this._flagResize);
+    } catch (e) {}
+  }
+
+  waitAndInit(tries = 0) {
+    if (this._killed) return;
+    if (window.gsap && window.ScrollTrigger && window.Lenis) { this.init(); return; }
+    if (tries > 240) return;
+    setTimeout(() => this.waitAndInit(tries + 1), 40);
+  }
+
+  init() {
+    const gsap = window.gsap;
+    const ST = window.ScrollTrigger;
+    gsap.registerPlugin(ST);
+
+    // accent color tweak
+    document.documentElement.style.setProperty('--accent', this.props.accentColor || '#FF2800');
+
+    const logo = document.querySelector('[data-logo]');
+    if (logo) {
+      logo.style.height = (this.props.logoHeight ?? 71) + 'px';
+      logo.style.transform = 'translate(' + (this.props.logoX ?? 0) + 'px,' + (this.props.logoY ?? 0) + 'px)';
+    }
+    const navlogo0 = document.querySelector('[data-navlogo]');
+    if (navlogo0) {
+      navlogo0.style.height = (this.props.navLogoHeight ?? 22) + 'px';
+      navlogo0.style.transform = 'translate(' + (this.props.navLogoX ?? 0) + 'px,' + (this.props.navLogoY ?? 0) + 'px)';
+    }
+
+    const root = document;
+    const q = (s) => root.querySelector(s);
+    const qa = (s) => gsap.utils.toArray(s);
+
+    // --- smooth scroll (Lenis) ---
+    const smooth = this.props.smoothScroll ?? true;
+    if (smooth) {
+      const lenis = new window.Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 1 });
+      this.lenis = lenis;
+      lenis.on('scroll', ST.update);
+      this._tickerFn = (time) => lenis.raf(time * 1000);
+      gsap.ticker.add(this._tickerFn);
+      gsap.ticker.lagSmoothing(0);
+      // anchor links -> lenis scroll
+      qa('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          const target = id.length > 1 ? q(id) : null;
+          if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -60 }); }
+        });
+      });
+    }
+
+    // --- nav background on scroll ---
+    const nav = q('[data-nav]');
+    if (nav) {
+      nav.style.background = 'rgba(10,10,10,0.55)';
+      nav.style.backdropFilter = 'blur(14px)';
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+    }
+
+    // --- HERO: text-masked video, zoom-through-type reveal ---
+    const hero = q('[data-hero]');
+    const video = q('[data-hero-video]');
+    const knockText = q('[data-knock-text]');
+    const knockLayer = q('[data-knock-layer]');
+    if (hero) {
+      gsap.set(video, { scale: 1.06 });
+      if (video) {
+        video.loop = true; video.muted = true;
+        const kick = () => video.play().catch(() => {});
+        kick();
+        video.addEventListener('canplay', kick);
+        video.addEventListener('ended', kick);
+      }
+      // fade the scroll hint out as the user leaves the hero — no zoom on the type
+      gsap.to('[data-scroll-hint]', {
+        autoAlpha: 0, ease: 'none',
+        scrollTrigger: { trigger: hero, start: 'top top', end: '30% top', scrub: true }
+      });
+    }
+
+    // --- MATERIALIZE helper: per-character, scroll-scrubbed, replays both directions ---
+    const splitChars = (node, out) => {
+      Array.from(node.childNodes).forEach((k) => {
+        if (k.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          for (const ch of k.textContent) {
+            if (ch === '\n') continue;
+            if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
+            const s = document.createElement('span');
+            s.textContent = ch;
+            s.style.display = 'inline-block';
+            s.style.willChange = 'opacity, filter, transform';
+            frag.appendChild(s);
+            out.push(s);
+          }
+          node.replaceChild(frag, k);
+        } else if (k.nodeType === 1 && k.tagName !== 'BR') {
+          splitChars(k, out);
+        }
+      });
+    };
+    const applyMat = (root, opts) => {
+      opts = opts || {};
+      if (!root || root.dataset.matDone) return;
+      root.dataset.matDone = '1';
+      root.style.overflow = 'visible';
+      root.querySelectorAll('*').forEach((e) => { e.style.overflow = 'visible'; });
+      const chars = [];
+      splitChars(root, chars);
+      if (!chars.length) return;
+      gsap.set(chars, { opacity: 0, filter: 'blur(12px)', yPercent: 40, scale: 1.6 });
+      gsap.to(chars, {
+        opacity: 1, filter: 'blur(0px)', yPercent: 0, scale: 1, ease: 'power2.out',
+        stagger: { each: opts.each || 0.03, from: 'random' },
+        scrollTrigger: { trigger: root, start: opts.start || 'top 86%', end: opts.end || 'top 40%', scrub: 0.5 }
+      });
+    };
+    this._applyMat = applyMat;
+
+    // apply the same materialize to the caption + line-reveal headlines (except ones kept on the original slide-up)
+    qa('[data-materialize], [data-reveal]:not([data-keep-lines])').forEach((el) => applyMat(el, { start: 'top 86%' }));
+
+    // original line slide-up reveal (kept exactly as before)
+    qa('[data-keep-lines]').forEach((el) => {
+      const lines = el.querySelectorAll('[data-line]');
+      gsap.fromTo(lines,
+        { yPercent: 122 },
+        {
+          yPercent: 0, ease: 'power2.out', stagger: 0.08,
+          scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 42%', scrub: 1 }
+        }
+      );
+    });
+
+    // --- pinned cross-fade cards ---
+    const fadeSection = q('[data-fade-section]');
+    const fadeStage = q('[data-fade-stage]');
+    const fadeCards = qa('[data-fade-card]');
+    const yearTicker = q('[data-year-ticker]');
+    const eraCount = q('[data-era-count]');
+    if (fadeSection && fadeStage && fadeCards.length) {
+      const n = fadeCards.length;
+      const eras = fadeCards.map((c) => ({
+        accent: c.getAttribute('data-era-accent') || '#FF2800',
+        year: c.getAttribute('data-era-year') || ''
+      }));
+      const pad2 = (x) => (x < 10 ? '0' + x : '' + x);
+      // stack order + initial state: first visible, rest hidden below
+      fadeCards.forEach((c, i) => {
+        gsap.set(c, { autoAlpha: i === 0 ? 1 : 0, yPercent: i === 0 ? 0 : 6, zIndex: n - i });
+      });
+      let curEra = -1;
+      const setActive = (active) => {
+        if (active === curEra) return;
+        curEra = active;
+        const e = eras[active];
+        if (yearTicker) { yearTicker.textContent = e.year; yearTicker.style.color = e.accent; }
+        if (eraCount) eraCount.textContent = 'ERA ' + pad2(active + 1) + ' / ' + pad2(n);
+      };
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: fadeSection, start: 'top top',
+          end: () => '+=' + (window.innerHeight * (n)),
+          pin: fadeStage, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1,
+          onUpdate: (self) => {
+            // fades happen at i+0.5 over duration 0.5 (midpoint i+0.75) on a 0..n timeline
+            const p = self.progress * n;
+            let idx = 0;
+            for (let i = 0; i < n - 1; i++) { if (p >= i + 0.75) idx = i + 1; }
+            setActive(idx);
+          }
+        }
+      });
+      // hold each card, then cross-fade to the next
+      for (let i = 0; i < n - 1; i++) {
+        tl.to(fadeCards[i], { autoAlpha: 0, yPercent: -6, ease: 'power1.inOut', duration: 0.5 }, i + 0.5)
+          .to(fadeCards[i + 1], { autoAlpha: 1, yPercent: 0, ease: 'power1.inOut', duration: 0.5 }, i + 0.5);
+      }
+      // hold the last card so the timeline spans n units, matching the ticker math in onUpdate
+      tl.to({}, { duration: 1 }, n - 1);
+      setActive(0);
+    }
+
+    // --- count-up stats ---
+    qa('[data-count]').forEach((el) => {
+      const end = parseFloat(el.getAttribute('data-count'));
+      const dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+      const obj = { v: 0 };
+      const run = () => {
+        gsap.killTweensOf(obj);
+        obj.v = 0;
+        gsap.to(obj, {
+          v: end, duration: 2, ease: 'power2.out',
+          onUpdate: () => { el.textContent = obj.v.toFixed(dec); }
+        });
+      };
+      const reset = () => { gsap.killTweensOf(obj); obj.v = 0; el.textContent = (0).toFixed(dec); };
+      ST.create({
+        trigger: el, start: 'top 88%', end: 'bottom top',
+        onEnter: run, onEnterBack: run, onLeave: reset, onLeaveBack: reset
+      });
+    });
+
+    // --- horizontal pinned spec scroller ---
+    const hsec = q('[data-hsection]');
+    const track = q('[data-htrack]');
+    if (hsec && track) {
+      const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      gsap.to(track, {
+        x: () => -dist(), ease: 'none',
+        scrollTrigger: {
+          trigger: hsec, start: 'top top', end: () => '+=' + dist(),
+          pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1
+        }
+      });
+    }
+
+    // --- WORLDS OF FERRARI: parallax + reveal + side rail ---
+    const worldsSection = q('[data-worlds]');
+    const worlds = qa('[data-world]');
+    const rail = q('[data-world-rail]');
+    const wnums = qa('[data-wnum]');
+    if (worldsSection && worlds.length) {
+      const accent = this.props.accentColor || '#FF2800';
+      const setWorld = (active) => {
+        wnums.forEach((s, i) => { s.style.color = i === active ? accent : '#4a4744'; });
+      };
+      // rail visibility while section in view
+      ST.create({
+        trigger: worldsSection, start: 'top 60%', end: 'bottom 40%',
+        onToggle: (self) => { if (rail) rail.style.opacity = self.isActive ? '1' : '0'; }
+      });
+      worlds.forEach((panel, i) => {
+        const img = panel.querySelector('[data-world-img]');
+        const lines = panel.querySelectorAll('[data-world-line]');
+        // parallax on the image layer
+        if (img) {
+          gsap.fromTo(img, { yPercent: -6 }, {
+            yPercent: 6, ease: 'none',
+            scrollTrigger: { trigger: panel, start: 'top bottom', end: 'bottom top', scrub: true }
+          });
+        }
+        // content reveal — same materialize, finished by the time text nears center
+        lines.forEach((ln) => applyMat(ln, { start: 'top 92%', end: 'top 56%', each: 0.014 }));
+        // active index
+        ST.create({
+          trigger: panel, start: 'top 55%', end: 'bottom 55%',
+          onToggle: (self) => { if (self.isActive) setWorld(i); }
+        });
+      });
+      setWorld(0);
+    }
+
+    qa('[data-corse-video], [data-gt-video], [data-classiche-video], [data-vento-video]').forEach((vid) => {
+      vid.loop = true; vid.muted = true; vid.playsInline = true;
+      const kick = () => vid.play().catch(() => {});
+      kick();
+      vid.addEventListener('canplay', kick);
+      vid.addEventListener('ended', kick);
+    });
+
+    this.initFlagReveal();
+
+    ST.refresh();
+  }
+
+  initFlagReveal() {
+    const footer = document.querySelector('[data-reveal-host]');
+    const canvas = document.querySelector('[data-flag-canvas]');
+    if (!footer || !canvas) return;
+    const ctx = canvas.getContext('2d');
+    const COVER = '#0A0A0A';
+    const HEAL = 0.012;     // per-frame re-cover alpha (slow healing)
+    const RADIUS = 60;      // scratch brush radius
+
+    let W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const resize = () => {
+      const r = footer.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = COVER; ctx.fillRect(0, 0, W, H);
+    };
+    resize();
+    this._flagResize = resize;
+    window.addEventListener('resize', resize);
+
+    const scratch = (x, y) => {
+      ctx.globalCompositeOperation = 'destination-out';
+      const g = ctx.createRadialGradient(x, y, 0, x, y, RADIUS);
+      g.addColorStop(0, 'rgba(0,0,0,0.9)');
+      g.addColorStop(0.6, 'rgba(0,0,0,0.5)');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, RADIUS, 0, Math.PI * 2); ctx.fill();
+    };
+
+    let last = null;
+    const onMove = (e) => {
+      const r = footer.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      if (x < 0 || y < 0 || x > W || y > H) { last = null; return; }
+      if (last) {
+        const dx = x - last.x, dy = y - last.y;
+        const steps = Math.max(1, Math.hypot(dx, dy) / 12);
+        for (let i = 0; i < steps; i++) scratch(last.x + dx * (i / steps), last.y + dy * (i / steps));
+      }
+      scratch(x, y);
+      last = { x, y };
+    };
+    footer.addEventListener('pointermove', onMove);
+    footer.addEventListener('pointerleave', () => { last = null; });
+
+    // slow healing loop
+    const heal = () => {
+      if (this._killed) return;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = COVER;
+      ctx.globalAlpha = HEAL;
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalAlpha = 1;
+      this._flagRAF = requestAnimationFrame(heal);
+    };
+    this._flagRAF = requestAnimationFrame(heal);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+﻿- galleria-del-vento.mp4 — Seedance 2.5 reference-to-video (fal: bytedance/seedance-2.5/us/reference-to-video), 2026-10-28, 12s 1080p no audio, refs site/uploads/video refs/1-4.jpg (Gemini sparkle inpainted), prompt galleria-del-vento-seedance.txt. Re-encoded CRF 26 to 1.6 MB; original in source-media/.
